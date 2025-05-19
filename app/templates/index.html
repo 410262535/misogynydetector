@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Threads 帳號厭女偵測系統</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body class="bg">
+  <main class="centered">
+    <h2 class="logo">Misogyny Detector</h2>
+    <h1>Threads 帳號厭女偵測系統</h1>
+    <p class="subtitle">用來判斷帳號近期貼文與對他人的回覆是否具厭女傾向</p>
+
+    <form method="POST" class="input-box">
+      <input type="text" name="username" placeholder="輸入要分析的 Threads 帳號" required />
+      <button type="submit">開始分析</button>
+    </form>
+
+    <div class="note">
+      <p>系統只能分析公開的 Threads 帳號</p>
+      <p>此系統為大學課堂小專題，著重於模型準確度<br>因不想花錢所以網站有機率爆掉，請見諒</p>
+    </div>
+
+    <footer>© 2025. For academic use only. By three students from Fu Jen Catholic University.</footer>
+  </main>
+</body>
+</html>

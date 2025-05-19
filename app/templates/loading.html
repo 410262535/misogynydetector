@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>系統分析中</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body class="bg">
+  <main class="centered">
+    <h2 class="logo">Misogyny Detector</h2>
+    <h3 class="loading-text">系統正在爬資料與分析<br>如果等太久可以憤而離席<br>對不雞 我們遜</h3>
+
+    <div class="circle-wrapper">
+      <div class="circle-loader"></div>
+      <div class="circle-text">
+        <span id="number">1</span><span class="percent-symbol">%</span>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top: 20px; line-height: 1.6;">
+      本系統僅能以未登入方式<br />
+      分析帳號最多近15篇文 + 15則回覆<br />
+      Meta太嚴了我們繞不過去
+    </div>
+
+    <footer>© 2025. For academic use only. By three students from Fu Jen Catholic University.</footer>
+  </main>
+
+  <script>
+    let p = 1;
+    setInterval(() => {
+      p = Math.min(100, p + Math.floor(Math.random() * 3));
+      document.getElementById("number").innerText = p;
+    }, 600);
+  </script>
+
+  <script>
+    setInterval(() => {
+      fetch(window.location.href, { cache: "no-store" }).then((res) => {
+        if (res.redirected) {
+          window.location.href = res.url;
+        }
+      });
+    }, 3000);
+  </script>
+</body>
+</html>

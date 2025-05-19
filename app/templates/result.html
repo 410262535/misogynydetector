@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>分析結果</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body class="bg">
+  <main class="centered">
+    <h2 class="logo">Misogyny Detector</h2>
+
+    {% if no_posts %}
+      <h1>@{{ username }}</h1>
+      <p style="font-size: 20px; font-weight: bold; line-height: 1.8;">
+        該帳號沒有發布任何一篇文<br />
+        請輸入至少含一篇文的公開帳號<br />
+        （回覆不算）
+      </p>
+      <form action="/" method="get" class="input-box">
+        <button type="submit">重新查詢</button>
+      </form>
+
+
+
+    {% else %}
+      <!-- 原本有貼文時的統計與貼文顯示邏輯（保留） -->
+      <h1>@{{ username }}</h1>
+
+      <div class="summary">
+        <div>
+          <div class="label">可抓取貼文+回覆數</div>
+          <div class="value">{{ stats.total_posts }}</div>
+        </div>
+        <div>
+          <div class="label">厭女文本數</div>
+          <div class="value">{{ stats.misogynistic_posts }}</div>
+        </div>
+        <div>
+          <div class="label">厭女文本佔比</div>
+          <div class="value">
+            {% if stats.total_posts > 0 %}
+              {{ "%.0f" | format((stats.misogynistic_posts / stats.total_posts) * 100) }}%
+            {% else %}
+              0%
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="list-title">厭女貼文與回覆（這個人在網路上講過可能具厭女傾向的話）</div>
+      <div class="post-list">
+        {% for post in posts %}
+          <div class="post">{{ post.text }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <footer>© 2025. For academic use only. By three students from Fu Jen Catholic University.</footer>
+  </main>
+</body>
+</html>
